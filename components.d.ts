@@ -10,7 +10,5 @@ declare module 'vue' {
     BasicDetail: typeof import('./src/components/BasicDetail/index.vue')['default']
     Connect: typeof import('./src/components/Connect/index.vue')['default']
     Feed: typeof import('./src/components/Feed/index.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    Indx: typeof import('./src/components/Feed/indx.vue')['default']
   }
 }

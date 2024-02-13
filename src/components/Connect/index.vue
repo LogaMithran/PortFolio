@@ -81,7 +81,7 @@
   position: absolute;
 }
 </style>
-<script>
+<script lang="ts">
 import axios from "axios"
 import {sendMailToMk} from "@/services/MailerService";
 import gql from "graphql-tag";

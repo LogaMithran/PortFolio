@@ -16,7 +16,7 @@
     <v-breadcrumbs-divider></v-breadcrumbs-divider>
   </v-sheet>
 </template>
-<script>
+<script lang="ts">
 export default {
   data: () => {
     return {
