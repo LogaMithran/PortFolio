@@ -14,7 +14,7 @@
           <v-col class="" cols="3">
             <BasicDetail/>
           </v-col>
-          <v-col cols="6">
+          <v-col cols="6" class="feed-non-scrollable">
             <Feed/>
           </v-col>
           <v-col cols="3">
@@ -35,5 +35,9 @@ let header_tabs = ["About", "Skills", "Experience", "Yt"]
 .details-div {
   padding-top: 10px;
   padding-left: 10px;
+}
+.feed-non-scrollable {
+  max-height: 100vh;
+  overflow: scroll;
 }
 </style>

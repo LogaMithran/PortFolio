@@ -2,7 +2,7 @@
   <v-sheet
     rounded="lg"
     color="blue-grey-darken-1"
-    min-height="500px"
+    min-height="400px"
   >
     <div class="details-div">
       <h1> TEMPTEMPTEMP </h1>
@@ -15,5 +15,7 @@
 .details-div > h1, h3 {
   padding-left: 20px;
   padding-top: 10px;
+  display: flex;
+  overflow: hidden;
 }
 </style>
