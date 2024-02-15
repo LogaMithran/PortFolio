@@ -15,30 +15,32 @@
     <v-divider></v-divider>
     <v-main>
       <v-container>
-        <v-row>
+        <v-row
+          class="full-row"
+        >
           <v-col
             xs="12"
+            sm="12"
             lg="3"
-            md="3"
           >
             <BasicDetail/>
           </v-col>
           <v-col
-            xs="10"
+            xs="12"
+            sm="10"
             lg="6"
-            md="6"
+            md="12"
             class="feed-non-scrollable"
             v-model="headerTabValue"
           >
-            <Feed v-if="parseInt(headerTabValue) == 0"/>
-            <Skills v-if="parseInt(headerTabValue) == 1"/>
-            <Experience v-if="parseInt(headerTabValue) == 2"/>
-            <YT v-if="parseInt(headerTabValue) == 3"/>
+            <About v-if="parseInt(headerTabValue) == 0"/>
+            <Experience v-if="parseInt(headerTabValue) == 1"/>
+            <YT v-if="parseInt(headerTabValue) == 2"/>
           </v-col>
           <v-col
             xs="12"
+            sm="12"
             lg="3"
-            md="3"
           >
             <Connect/>
           </v-col>
@@ -49,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-let header_tabs = ["About", "Skills", "Experience", "Yt"]
+let header_tabs = ["About", "Experience", "Yt"]
 </script>
 
 <script lang="ts">
@@ -63,14 +65,26 @@ export default {
 </script>
 
 <style>
-.details-div {
-  padding: 20px;
-}
 
 .feed-non-scrollable {
-  max-height: 100vh;
-  overflow: scroll;
-  min-width: 400px;
+  min-height: 500px;
+  overflow: auto;
+  width: fit-content;
 }
+
+@media (max-width: 600px) {
+  .full-row {
+    flex-direction: column;
+    background-color: #00b0ff;
+  }
+}
+
+@media (min-width: 1280px) {
+  .feed-non-scrollable {
+    background-color: #00c853;
+    overflow: scroll;
+  }
+}
+
 </style>
 

@@ -10,7 +10,7 @@
 
 <style scoped>
 .about-div > h3, p {
-  padding: 10px;
+  padding: 15px 15px 10px 15px  ;
   text-align: justify;
 }
 </style>

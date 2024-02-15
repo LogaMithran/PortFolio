@@ -12,7 +12,6 @@ declare module 'vue' {
     Connect: typeof import('./src/components/Connect/index.vue')['default']
     Experience: typeof import('./src/components/Experience/index.vue')['default']
     Feed: typeof import('./src/components/Feed/index.vue')['default']
-    Skills: typeof import('./src/components/skills/index.vue')['default']
     YT: typeof import('./src/components/YT/index.vue')['default']
   }
 }
