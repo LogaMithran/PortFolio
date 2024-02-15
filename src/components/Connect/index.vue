@@ -1,18 +1,19 @@
 <template>
   <v-sheet
-    color="blue-grey-darken-1"
-    min-height="400px"
+    color="#092635"
     rounded="lg"
     class="connect-div"
   >
     <h1> Connect </h1>
     <v-form class="form-details">
       <v-row class="mt-2">
-        <v-col>
+        <v-col class="">
           <v-text-field
             label="Email"
             variant="solo"
             v-model="recipientMailer"
+            :rules="[() => !!recipientMailer || 'This field is required']"
+            :error-messages="errorMessages"
           >
             <template
               v-slot:prepend-inner
@@ -21,6 +22,7 @@
             </template>
           </v-text-field>
           <v-textarea
+            :rules="[() => !!recipientMailer || 'This field is required']"
             variant="solo"
             placeholder="Give your valuable inputs"
             v-model="bodyText"
@@ -63,21 +65,18 @@
 .connect-div {
   position: relative;
   display: flex;
-  overflow: hidden;
 }
-
+v-text-field, v-textarea {
+  width: fit-content;
+}
 .form-details {
-  margin: 10px;
+  margin: 20px;
   justify-content: center;
-}
-
-.form-details {
 }
 
 .success-div {
   text-align: center;
   margin: 10px;
-  //z-index: 10;
   position: absolute;
 }
 </style>
@@ -89,39 +88,53 @@ import gql from "graphql-tag";
 export default {
   data: () => {
     return {
-      recipientMailer: "",
-      bodyText: "",
+      recipientMailer: null,
+      bodyText: null,
       sendMailLoading: false,
       mailSent: false,
       displaySnackbar: false,
-      mailSentMessage: "Mail sent successfully"
+      mailSentMessage: "",
+      errorMessages: ""
     }
   },
   methods: {
     async sendMail() {
-      this.sendMailLoading = true
-      const mailResponse = await this.$apollo.mutate({
-        mutation: gql`
+      try {
+        this.sendMailLoading = true
+        const mailResponse = await this.$apollo.mutate({
+          mutation: gql`
                 mutation sendMail($filters: MailerInput!) {
                     sendMail(sendMailInput: $filters ){
                         status
                         response
                     }
                 }`,
-        variables:
-          {
-            "filters": {
-              "from": this.recipientMailer,
-              "body": this.bodyText
-            }
-          }
-      });
-      if (mailResponse && mailResponse.data.sendMail.status) {
-        this.mailSent = true
-        this.sendMailLoading = false
-        this.displaySnackbar = true
-        this.bodyText = ""
-        this.recipientMailer = ""
+          variables:
+            {
+              "filters": {
+                "from": this.recipientMailer,
+                "body": this.bodyText
+              }
+            },
+            errorPolicy: "all"
+        });
+        if (mailResponse && mailResponse.data.sendMail.status) {
+          this.mailSent = true
+          this.sendMailLoading = false
+          this.displaySnackbar = true
+          this.mailSentMessage = "Mail sent successfully"
+          this.bodyText = null
+          this.recipientMailer = null
+        } else {
+          this.mailSent = true
+          this.sendMailLoading = false
+          this.displaySnackbar = true
+          this.mailSentMessage = "Oops!, Something went wrong"
+          this.bodyText = null
+          this.recipientMailer = null
+        }
+      } catch (e){
+        this.mailSentMessage = "Oops!, Something went wrong"
       }
     }
   }

@@ -2,22 +2,44 @@
   <v-app>
     <v-tabs
       align-tabs="center"
-      color="blue-grey-darken-1"
+      color="#092635"
+      v-model="headerTabValue"
     >
-      <v-tab v-for="tab in header_tabs" :key=tab> {{ tab }}
+      <v-tab
+        v-for="tab in header_tabs"
+        :key=tab
+      >
+        {{ tab }}
       </v-tab>
     </v-tabs>
     <v-divider></v-divider>
     <v-main>
       <v-container>
         <v-row>
-          <v-col class="" cols="3">
+          <v-col
+            xs="12"
+            lg="3"
+            md="3"
+          >
             <BasicDetail/>
           </v-col>
-          <v-col cols="6" class="feed-non-scrollable">
-            <Feed/>
+          <v-col
+            xs="10"
+            lg="6"
+            md="6"
+            class="feed-non-scrollable"
+            v-model="headerTabValue"
+          >
+            <Feed v-if="headerTabValue == 0"/>
+            <Skills v-if="headerTabValue == 1"/>
+            <Experience v-if="headerTabValue == 2"/>
+            <YT v-if="headerTabValue == 3"/>
           </v-col>
-          <v-col cols="3">
+          <v-col
+            xs="12"
+            lg="3"
+            md="3"
+          >
             <Connect/>
           </v-col>
         </v-row>
@@ -30,14 +52,25 @@
 let header_tabs = ["About", "Skills", "Experience", "Yt"]
 </script>
 
+<script lang="ts">
+export default {
+  data: () => {
+    return {
+      headerTabValue: "About",
+    }
+  }
+}
+</script>
 
 <style>
 .details-div {
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 20px;
 }
+
 .feed-non-scrollable {
   max-height: 100vh;
   overflow: scroll;
+  min-width: 400px;
 }
 </style>
+
