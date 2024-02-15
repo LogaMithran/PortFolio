@@ -1,5 +1,5 @@
 <template>
   This is YT
 </template>
-<script setup>
+<script setup lang="ts">
 </script>

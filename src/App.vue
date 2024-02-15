@@ -30,10 +30,10 @@
             class="feed-non-scrollable"
             v-model="headerTabValue"
           >
-            <Feed v-if="headerTabValue == 0"/>
-            <Skills v-if="headerTabValue == 1"/>
-            <Experience v-if="headerTabValue == 2"/>
-            <YT v-if="headerTabValue == 3"/>
+            <Feed v-if="parseInt(headerTabValue) == 0"/>
+            <Skills v-if="parseInt(headerTabValue) == 1"/>
+            <Experience v-if="parseInt(headerTabValue) == 2"/>
+            <YT v-if="parseInt(headerTabValue) == 3"/>
           </v-col>
           <v-col
             xs="12"

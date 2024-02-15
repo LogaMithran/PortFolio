@@ -113,5 +113,5 @@ svg {
   padding: 5px;
 }
 </style>
-<script setup>
+<script lang="ts">
 </script>
