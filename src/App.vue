@@ -1,5 +1,6 @@
 <template>
-  <v-app>
+  <v-app
+    class="source-app">
     <v-tabs
       align-tabs="center"
       color="#092635"
@@ -22,14 +23,12 @@
             xs="12"
             sm="12"
             lg="3"
+            class="basic-detail-col"
           >
             <BasicDetail/>
           </v-col>
           <v-col
-            xs="12"
-            sm="10"
             lg="6"
-            md="12"
             class="feed-non-scrollable"
             v-model="headerTabValue"
           >
@@ -41,6 +40,7 @@
             xs="12"
             sm="12"
             lg="3"
+            class="connect-col"
           >
             <Connect/>
           </v-col>
@@ -67,22 +67,35 @@ export default {
 <style>
 
 .feed-non-scrollable {
-  min-height: 500px;
+  height: 90vh;
   overflow: auto;
   width: fit-content;
+}
+
+.basic-detail-col, .connect-col {
+  height: fit-content;
 }
 
 @media (max-width: 600px) {
   .full-row {
     flex-direction: column;
-    background-color: #00b0ff;
+    background-color: #00c853;
+    grid-auto-rows: 1fr;
+  }
+
+  .source-app {
+    font-size: small;
+  }
+  .feed-non-scrollable {
+    //overflow: auto;
+    //width: fit-content;
   }
 }
 
 @media (min-width: 1280px) {
   .feed-non-scrollable {
     background-color: #00c853;
-    overflow: scroll;
+    //overflow: scroll;
   }
 }
 
